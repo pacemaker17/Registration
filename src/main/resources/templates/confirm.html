@@ -13,11 +13,13 @@
 	<link th:href="@{css/fv.css}" rel="stylesheet" />	
 </head>
 <body  class="gray-bg">
- <div class="middle-box text-center loginscreen animated fadeInDown">
-    <div>
+ <!--  <div class="middle-box text-center loginscreen animated fadeInDown">-->
+    <center><h4>Set Your Password</h4></center>
+  
     
       <hr />
-      <h4>Set Your Password</h4>
+      <div class="col-md-4"></div>
+	   <div class="col-md-4">
 
       <div th:if="${successMessage}" class="alert alert-success"
         role="alert" th:text=${successMessage}></div>
@@ -57,16 +59,16 @@
         </div>
 
 
-		
+		<center>
         <button type="submit"
           class="btn btn-primary block full-width m-b">Save
-        </button>
+        </button></center>
 
       </form>
 
      
     </div>
-  </div>
+  <div class="col-md-4"></div>
 
   <!-- jQuery-->
   <script

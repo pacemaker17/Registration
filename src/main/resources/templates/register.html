@@ -5,21 +5,27 @@
 <title>Registration</title>
  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
   rel="stylesheet"
-  
-  crossorigin="anonymous" />
+  />
 
-  <link th:href="@{css/style.css}" rel="stylesheet" />
+  
 </head>
 <body class="gray-bg">
-	<div class="middle-box text-center loginscreen animated fadeInDown">
-	 	<div>
-      		<h4>User Registration</h4>
+	<!-- <div class="middle-box text-center loginscreen animated fadeInDown"> -->
+	<center><h4>User Registration</h4></center>
+	
+	<div class="col-md-4"></div>
+	<div class="col-md-4">
+	 	
+      			
+      		
+      	
+      		
       		 <form autocomplete="off" action="#" th:action="@{/register}"
         		th:object="${user}" method="post" class="m-t" role="form"
         		data-toggle="validator">
         	
-     <!--  <div th:if="${confirmationMessage}" class="alert alert-success"
-          		role="alert" th:text=${confirmationMessage}></div> -->   	
+          <div th:if="${confirmationMessage}" class="alert alert-success"
+          		role="alert" th:text=${confirmationMessage}></div> 	
 
         	 <div th:if="${errorMessage}" class="alert alert-danger" role="alert"
           		th:text="${errorMessage}"></div>
@@ -61,13 +67,13 @@
           		<span class="glyphicon form-control-feedback"
             		aria-hidden="true"></span>
             </div>
-             
+            <center> 
             <button type="submit"
           		class="btn btn-primary block full-width m-b">Register</button>
-        		
+        	</center>	
         	</form>    
 	  	</div>
-	</div>
+	
 	
 	<!-- jQuery-->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

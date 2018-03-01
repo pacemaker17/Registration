@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,13 +35,17 @@ public class RegisterController {
 	@Autowired
 	EmailService emailService;
 	
-//	@Autowired
-//    public RegisterController(UserService userService, EmailService emailService) {
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	
+//    public RegisterController(BCryptPasswordEncoder bCryptPasswordEncoder,UserService userService, EmailService emailService) {
 //      
 //      this.userService = userService;
 //      this.emailService = emailService;
+//      this.bCryptPasswordEncoder=bCryptPasswordEncoder;
 //    }
-//	
+	
 	
 	
 	
@@ -126,6 +131,7 @@ public class RegisterController {
 			Zxcvbn passwordCheck = new Zxcvbn();
 			
 			Strength strength = passwordCheck.measure(requestParams.get("password").toString());
+			String encryptpass = bCryptPasswordEncoder.encode(requestParams.get("password").toString());
 			
 			if (strength.getScore() < 3) {
 				bindingResult.reject("password");
@@ -137,11 +143,10 @@ public class RegisterController {
 				return modelAndView;
 			}
 		
-			// Find the user associated with the reset token
 			User user = userService.findByConfirmationToken(requestParams.get("token").toString());
 
 			// Set new password
-//			user.setPassword(bCryptPasswordEncoder.encode(requestParams.get("password")));
+			user.setPassword(encryptpass);
 
 			// Set user to enabled
 			user.setEnabled(true);

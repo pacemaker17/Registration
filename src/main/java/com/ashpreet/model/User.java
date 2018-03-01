@@ -29,7 +29,6 @@ public class User {
 	private String email;
 	
 	@Column(name = "password")
-	@Transient
 	private String password;
 	
 	@Column(name = "first_name")
@@ -45,7 +44,7 @@ public class User {
 	
 	@Column(name = "confirmation_token")
 	private String confirmationToken;
-
+	
 	public String getConfirmationToken() {
 		return confirmationToken;
 	}
