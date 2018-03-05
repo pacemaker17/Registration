@@ -20,6 +20,10 @@ private UserRepository userRepository;
 		return userRepository.findByEmail(email);
 	}
 	
+	public User findByPassword(String password) {
+		return userRepository.findByPassword(password);
+	}
+	
 	public User findByConfirmationToken(String confirmationToken) {
 		return userRepository.findByConfirmationToken(confirmationToken);
 	}

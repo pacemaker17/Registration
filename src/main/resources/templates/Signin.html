@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sign In</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  rel="stylesheet"
+  />
+</head>
+<body>
+	<center><h4>Sign In Form</h4></center>
+	<div class="col-md-4"></div>
+	<div class="col-md-4">
+	
+	<form autocomplete="off" th:action="@{/home}" method="post">
+	<!-- Email Address -->
+	<div class="form-group input-group has-feedback">
+          		<span class="input-group-addon">
+            	<span class="glyphicon glyphicon-envelope"></span>
+          		</span>
+          		<input type="email" name="email"
+            		placeholder="Email Address" class="form-control" size="40" id="email"
+            		data-error="This email address is invalid" required />
+          		<span class="glyphicon form-control-feedback"
+            		aria-hidden="true"></span>
+    </div>
+    
+    <!-- Password -->
+     <div class="form-group input-group">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-lock"></span>
+          </span>
+          <input name="password" type="password" id="password" name="password"
+            placeholder="Password" class="form-control" required />
+          <span class="glyphicon"
+            aria-hidden="true"></span>
+     </div>
+     
+     <center>
+      <button type="submit"
+          class="btn btn-primary block full-width m-b">SIGN IN
+        </button>
+     </center>
+      </form>
+
+	</div>
+	<div class="col-md-4"></div>
+</body>
+</html>

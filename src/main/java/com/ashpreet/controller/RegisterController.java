@@ -126,7 +126,6 @@ public class RegisterController {
 		public ModelAndView processConfirmationForm(ModelAndView modelAndView, BindingResult bindingResult, 
 				@RequestParam Map requestParams, RedirectAttributes redir) {
 					
-			modelAndView.setViewName("confirm");
 			
 			Zxcvbn passwordCheck = new Zxcvbn();
 			
@@ -138,9 +137,12 @@ public class RegisterController {
 				
 				redir.addFlashAttribute("errorMessage", "Your password is weak.");
 
-				modelAndView.setViewName("redirect:confirm?token=" + requestParams.get("token"));
+				modelAndView.setViewName("Signin");
 				System.out.println(requestParams.get("token"));
 				return modelAndView;
+				
+
+
 			}
 		
 			User user = userService.findByConfirmationToken(requestParams.get("token").toString());
@@ -155,10 +157,50 @@ public class RegisterController {
 			userService.saveUser(user);
 			
 			modelAndView.addObject("successMessage", "Your password has been set!");
-			return modelAndView;		
+			modelAndView.setViewName("Signin");
+			return modelAndView;
+			
 		}
-	
-	
-	
-
+		
+		
+		@RequestMapping(value="/home", method = RequestMethod.POST)
+		public ModelAndView SigninPage(ModelAndView modelAndView, @RequestParam("email") String email,
+				@RequestParam("password") String password) {
+				
+			User user = userService.findByEmail(email);
+			User pass = userService.findByPassword(password);
+			
+			
+			
+			if(user!=null){
+				if(bCryptPasswordEncoder.matches(password,user.getPassword())){
+					modelAndView.setViewName("home");
+					return modelAndView;		
+				}
+				else{
+					System.out.println("Password Incorrect");
+				}
+			}
+			else{
+				System.out.println("Email incorrect");
+			}
+					
+			
+				
+//			if (user == null) { // No token found in DB
+//				modelAndView.addObject("invalidToken", "Oops!  This is an invalid confirmation link.");
+//			} else { // Token found
+//				System.out.println("Token is valid");
+//				modelAndView.addObject("confirmationToken", user.getConfirmationToken());
+//			}
+//				
+//			modelAndView.setViewName("confirm");
+//			return modelAndView;		
+//		}
+//	        modelAndView.setViewName("home");
+			
+			return modelAndView;
+	        
+	}
 }
+		
